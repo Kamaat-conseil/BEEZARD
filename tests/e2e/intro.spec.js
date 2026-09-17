@@ -1,0 +1,25 @@
+import { test, expect } from '@playwright/test'
+
+test('dream completes, remembers visits and can replay', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await expect(page.locator('#app')).toHaveAttribute('inert', '')
+  await expect(page.getByRole('dialog')).toHaveCount(0, { timeout: 12000 })
+  await expect(page.locator('#app')).not.toHaveAttribute('inert', '')
+  await page.reload()
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await page.getByRole('button', { name: 'Revivre le rêve' }).click()
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+})
+test('skip and reduced motion leave navigation available', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('button', { name: 'Passer l’introduction' }).click()
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.reload()
+  await page.getByRole('button', { name: 'Revivre le rêve' }).click()
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await expect(page.locator('#app')).not.toHaveAttribute('inert', '')
+})

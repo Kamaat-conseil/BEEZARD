@@ -1,0 +1,26 @@
+.dream-playing{overflow:hidden}
+.dream-intro{position:fixed;inset:0;z-index:1000;overflow:hidden;background:#100a07;color:#f4ead6;animation:dreamExit 1.3s 6.9s ease-in-out forwards}
+.dream-canvas,.dream-fallback,.dream-vignette{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.dream-fallback{background:url('/assets/beezard-hero.png') center/cover;animation:fallbackDream 6.4s forwards}
+.dream-canvas{opacity:0}.dream-canvas.ready{opacity:1}
+.dream-vignette{background:radial-gradient(ellipse,transparent 15%,#100a0780 100%);box-shadow:inset 0 0 160px #100a0755}
+.dream-whisper{position:absolute;top:45%;width:100%;text-align:center;font:italic clamp(28px,4vw,64px) 'Instrument Serif',serif;letter-spacing:-.02em;opacity:0;animation:whisper 3.7s .3s both;text-shadow:0 2px 50px #190701}
+.dream-logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;animation:logoDream 3.9s 3.2s forwards}
+.dream-logo>span{font-size:clamp(62px,9vw,130px);font-weight:200;animation:orbitDream 12s linear infinite;color:#dab77a;line-height:1.1}
+.dream-logo strong{font-family:'Instrument Serif',serif;font-size:clamp(62px,12vw,180px);font-weight:400;letter-spacing:.1em;margin-left:.1em;line-height:1.2}
+.dream-logo small{font-size:10px;letter-spacing:.45em;margin-top:22px;color:#bba58b}
+.dream-orbit{position:absolute;left:50%;top:50%;width:42vmin;height:42vmin;border:1px solid #bf885e33;border-radius:50%;transform:translate(-50%,-50%);filter:blur(2px);opacity:0;animation:ringDream 6s 1s ease-out forwards}
+.dream-caption{position:absolute;bottom:7%;left:5%;font:italic 19px 'Instrument Serif',serif;opacity:0;animation:logoDream 3s 3.8s forwards}
+.dream-skip{position:absolute;right:5%;bottom:7%;border:0;border-bottom:1px solid #f4ead660;background:transparent;color:inherit;padding:12px 0;font-size:11px;letter-spacing:.06em;display:flex;gap:26px;align-items:center;z-index:2}
+.dream-skip:hover{color:#e7b56c}.dream-skip:focus-visible{outline:1px solid #f4ead6;outline-offset:7px}
+.dream-progress{position:absolute;bottom:0;left:0;width:100%;height:2px;background:#d49e61;transform-origin:left;animation:progressDream 8.2s linear forwards}
+.dream-replay{border:0;border-bottom:1px solid currentColor;background:transparent;color:inherit;font-size:12px;padding:8px 0;cursor:pointer}
+@keyframes whisper{0%{opacity:0;filter:blur(18px);transform:translateY(20px)}30%,60%{opacity:1;filter:blur(0);transform:translateY(0)}100%{opacity:0;filter:blur(16px);transform:translateY(-25px)}}
+@keyframes logoDream{0%{opacity:0;filter:blur(24px);transform:scale(.92)}45%,100%{opacity:1;filter:blur(0);transform:scale(1)}}
+@keyframes orbitDream{to{transform:rotate(180deg)}}
+@keyframes ringDream{20%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(3.5);filter:blur(18px)}}
+@keyframes fallbackDream{0%{transform:scale(1.04);opacity:1}40%{opacity:1}100%{transform:scale(1.2);opacity:0;filter:blur(28px)}}
+@keyframes dreamExit{to{opacity:0;filter:blur(16px);visibility:hidden}}
+@keyframes progressDream{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:600px){.dream-caption{bottom:15%;width:100%;left:0;text-align:center}.dream-skip{bottom:6%;right:50%;transform:translateX(50%);white-space:nowrap}.dream-whisper{top:40%}}
+@media(prefers-reduced-motion:reduce){.dream-intro{display:none}}
